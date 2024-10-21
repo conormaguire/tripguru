@@ -1,1 +1,40 @@
-<h1>TripGuru</h1>
+<!doctype html>
+<html>
+  <head>
+    <script>
+      function reset() {
+        const cookies = document.cookie.split(";");
+  
+        for (let i = 0; i < cookies.length; i++) {
+  
+            const cookie = cookies[i];
+  
+            const eqPos = cookie.indexOf("=");
+  
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+  
+            // Set the cookie's expiration date to a past date to delete it
+  
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  
+        }
+  
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+        window.location.reload();
+        if (window.Intercom) {
+          window.Intercom('shutdown');
+  
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>TripGuru</h1>
+    <button onclick="reset()">Reset</button>
+  
+    <!-- Start of tripgurusupport Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=f5a2eebd-4ee7-425a-b186-cec3a6045066"> </script>
+    <!-- End of tripgurusupport Zendesk Widget script -->
+  </body>
+</html>
