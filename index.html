@@ -28,6 +28,17 @@
         }
       }
     </script>
+    <script>
+      window.onload = function () {
+      // Check if the zE object is ready and Zendesk is loaded
+      if (window.zE) {
+        // Set conversation fields
+        window.zE("messenger:set", "conversationFields", [
+          { id: "22435786855069", value: true }
+        ])
+      }
+    };
+    </script>
   </head>
   <body>
     <h1>TripGuru</h1>
