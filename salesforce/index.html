@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
+    <script>
+      function reset() {
+        const cookies = document.cookie.split(";");
+  
+        for (let i = 0; i < cookies.length; i++) {
+  
+            const cookie = cookies[i];
+  
+            const eqPos = cookie.indexOf("=");
+  
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+  
+            // Set the cookie's expiration date to a past date to delete it
+  
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  
+        }
+  
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+        window.location.reload();
+        if (window.Intercom) {
+          window.Intercom('shutdown');
+  
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h1>TripGuru Support Cases</h1>
+    <button onclick="reset()">Reset</button>
+  
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToCase?encoding=UTF-8&orgId=00DQy00000FFA1m" method="POST">
+
+      <input type=hidden name="orgid" value="00DQy00000FFA1m">
+      <input type=hidden name="retURL" value="https://conormaguire.github.io/tripguru/salesforce">
+      
+      <!--  ----------------------------------------------------------------------  -->
+      <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+      <!--  these lines if you wish to test in debug mode.                          -->
+      <!--  <input type="hidden" name="debug" value=1>                              -->
+      <!--  <input type="hidden" name="debugEmail"                                  -->
+      <!--  value="conor.maguire@intercom.io">                                      -->
+      <!--  ----------------------------------------------------------------------  -->
+      
+      <label for="name">Contact Name</label><input  id="name" maxlength="80" name="name" size="20" type="text" /><br>
+      
+      <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
+      
+      <label for="subject">Subject</label><input  id="subject" maxlength="80" name="subject" size="20" type="text" /><br>
+      
+      <label for="description">Description</label><textarea name="description"></textarea><br>
+      
+      <input type="submit" name="submit">
+      
+    </form>
+    
+  </body>
+</html>
