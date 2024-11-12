@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      function reset() {
+        const cookies = document.cookie.split(";");
+  
+        for (let i = 0; i < cookies.length; i++) {
+  
+            const cookie = cookies[i];
+  
+            const eqPos = cookie.indexOf("=");
+  
+            const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+  
+            // Set the cookie's expiration date to a past date to delete it
+  
+            document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/";
+  
+        }
+  
+        window.localStorage.clear();
+        window.sessionStorage.clear();
+        window.location.reload();
+        if (window.Intercom) {
+          window.Intercom('shutdown');
+  
+        }
+      }
+    </script>
+    <script>
+      window.onload = function () {
+      // Check if the zE object is ready and Zendesk is loaded
+      if (window.zE) {
+        // Set conversation fields
+        // window.zE("messenger:set", "conversationFields", [
+        //   // Shopping Cart Open (boolean)
+        //   { id: "22435786855069", value: true }
+        // ])
+        console.log("Zendesk is loaded");
+      }
+    };
+    </script>
+  </head>
+  <body>
+    <h1>TripguruDev Support</h1>
+    <button onclick="reset()">Reset</button>
+  
+    <!-- Start of tripgurudev Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=493fb635-c84c-4258-a72c-d298f49f08df"> </script>
+    <!-- End of tripgurudev Zendesk Widget script -->
+  </body>
+</html>
